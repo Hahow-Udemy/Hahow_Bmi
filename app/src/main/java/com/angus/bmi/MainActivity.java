@@ -1,6 +1,7 @@
 package com.angus.bmi;
 
         import android.content.DialogInterface;
+        import android.content.Intent;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
@@ -54,16 +55,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity", "BMI:" + bmi);
         Toast.makeText(this, getString(R.string.your_bmi_is) + bmi, Toast.LENGTH_LONG).show();
         result.setText(getString(R.string.your_bmi_is) + bmi);
-        new AlertDialog.Builder(this)
-                .setTitle("BMI")
-                .setMessage(getString(R.string.your_bmi_is) + bmi)
-                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        edWeight.setText("");
-                        edHeight.setText("");
-                    }
-                })
-                .show();
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("BMI", bmi);
+        startActivity(intent);
+//        new AlertDialog.Builder(this)
+//                .setTitle("BMI")
+//                .setMessage(getString(R.string.your_bmi_is) + bmi)
+//                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        edWeight.setText("");
+//                        edHeight.setText("");
+//                    }
+//                })
+//                .show();
     }
 }
